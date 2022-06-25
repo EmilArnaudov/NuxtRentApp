@@ -4,7 +4,7 @@
         <div class="formContainer">
             <h1 class="heading">Register</h1>
 
-            <form class="form">
+            <form @submit="handleRegister" class="form">
             <div class="inputFields">
                 <label class="label" for="email">Email</label>
                 <input class="input" type="text" name="email" id="email">
@@ -24,6 +24,10 @@
                 <button class="btn">Register</button>
             </div>
 
+            <div class="error" v-if="error">
+                {{error}}
+            </div>
+
             <div class="horizontal"></div>
 
             <p class="para">Already have an account? <NuxtLink class="link" to="/login">Log In</NuxtLink></p>
@@ -35,8 +39,37 @@
     </div>
 </template>
 
+<script>
+export default {
+    data() {
+        return {
+            fullName: '',
+            email: '',
+            password: '',
+        }
+    },
+    methods: {
+        handleRegister(e) {
+            e.preventDefault();
+            this.$store.commit('register', [fullName.value, email.value, password.value]);
+        }
+    },
+    computed: {
+        error() {
+            return this.$store.state.error;
+        }
+    }
+}
+
+</script>
 
 <style scoped>
+
+    .error {
+        text-align: center;
+        font-size: 14px;
+    color: rgb(176, 0, 0);
+    }
     .formContainer {
         max-width: 350px;
         margin: 0 auto;

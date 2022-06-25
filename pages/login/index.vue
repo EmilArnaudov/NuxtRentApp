@@ -19,7 +19,7 @@
                         <button @click="handleLogin" class="btn">Login</button>
                     </div>
                     
-                    <div v-if="error">
+                    <div class="error" v-if="error">
                         {{error}}
                     </div>
 
@@ -44,14 +44,18 @@
             return {
                 email: '',
                 password: '',
-                error: '',
         
+            }
+        },
+        computed: {
+            error() {
+                return this.$store.state.error;
             }
         },
         methods: {
             handleLogin(e) {
                 e.preventDefault();
-                this.$store.commit('login')
+                this.$store.commit('login', [email.value, password.value])
             }
         }
     }
@@ -59,6 +63,12 @@
 </script>
 
 <style scoped>
+
+.error {
+    text-align: center;
+    font-size: 14px;
+    color: rgb(176, 0, 0);
+}
 .formContainer {
 
     max-width: 350px;
@@ -94,7 +104,7 @@
 .input {
     border: none;
     outline: none;
-    padding: 10px 12px;
+    padding: 10px 6px;
 }
 
 .input:focus {

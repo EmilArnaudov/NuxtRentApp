@@ -6,7 +6,7 @@
             </span>
             <ul class="navItems">
                 <li v-if="currentUser">
-                {{currentUser}}
+                {{currentUser.fullName}}
                 </li>
                 <li>
                     <NuxtLink class="navLink" to="/register">Register</NuxtLink>
@@ -67,10 +67,11 @@
 }
 
 .logo {
-    text-decoration: dashed;
+    text-decoration: none;
     color: #be8836;
     text-transform: uppercase;
     font-size: 20px;
+    font-family: 'Times New Roman', Times, serif;
     font-weight: 600;
 }
 
