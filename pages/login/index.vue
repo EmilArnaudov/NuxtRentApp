@@ -8,17 +8,20 @@
                 <form class="form">
                     <div class="inputFields">
                         <label class="label" for="email">Email</label>
-                        <input class="input" type="text" name="email" id="email">
+                        <input class="input" type="text" name="email" id="email" v-model="email">
                     </div>
 
                     <div class="inputFields">
                         <label class="label" for="password">Password</label>
-                        <input class="input" type="password" name="password" id="password">
+                        <input class="input" type="password" name="password" id="password" v-model="password">
                     </div>
                     <div class="btnContainer">
-                        <button class="btn">Login</button>
+                        <button @click="handleLogin" class="btn">Login</button>
                     </div>
-
+                    
+                    <div v-if="error">
+                        {{error}}
+                    </div>
 
                     <div class="horizontal"></div>
 
@@ -33,6 +36,27 @@
         <div class="bg"></div>
     </div>
 </template>
+
+<script>
+
+    export default {
+        data() {
+            return {
+                email: '',
+                password: '',
+                error: '',
+        
+            }
+        },
+        methods: {
+            handleLogin(e) {
+                e.preventDefault();
+                this.$store.commit('login')
+            }
+        }
+    }
+
+</script>
 
 <style scoped>
 .formContainer {

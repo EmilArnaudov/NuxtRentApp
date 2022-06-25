@@ -5,6 +5,9 @@
                 <NuxtLink class="logo" to="/">Rentworks.</NuxtLink>
             </span>
             <ul class="navItems">
+                <li v-if="currentUser">
+                {{currentUser}}
+                </li>
                 <li>
                     <NuxtLink class="navLink" to="/register">Register</NuxtLink>
                 </li>
@@ -17,13 +20,32 @@
                 <li>
                     <NuxtLink class="navLink" to="/profile">Profile</NuxtLink>
                 </li>
-                <li>
-                </li>
             </ul>
         </nav>
     </header>
 </template>
 
+<script>
+
+    export default {
+        data() {
+            return {
+        
+            }
+        },
+        methods: {
+            handleLogin(e) {
+                this.$store.commit('login')
+            }
+        },
+        computed: {
+            currentUser() {
+                return this.$store.state.currentUser
+            }
+        }
+    }
+
+</script>
 
 <style scoped>
 .header {
