@@ -1,10 +1,7 @@
 <template>
-    <div>
-        THIS IS THE ALL ROOMS PAGE
-        <div v-for="room of allRooms">
-            {{room._id}}
-        </div>
-
+    <div class="wrapper">
+        <RoomsGrid :allRooms="allRooms"></RoomsGrid>
+        <div class="userInfo"></div>
         <div class="bg"></div>
     </div>
 </template>
@@ -28,6 +25,17 @@ export default {
 
 
 <style scoped>
+
+.wrapper {
+    background: #26261E;
+    padding: 50px;
+    display: flex;
+}
+
+.userInfo {
+    width: 25%;
+}
+
 .bg {
     position: absolute;
     top: 0;

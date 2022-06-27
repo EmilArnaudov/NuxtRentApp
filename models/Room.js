@@ -5,7 +5,8 @@ class Room {
         this._id = id();
         this.deskCapacity = deskCapacity;
         this.size = size;
-        this.manager = '';
+        this.desksTaken = 0;
+        this.manager = 'admin';
     }
 
     toJSON() {
