@@ -6,18 +6,18 @@
             </span>
             <ul class="navItems">
                 <li v-if="currentUser">
-                {{currentUser.fullName}}
+                <span class="greetings">Hello, {{currentUser.fullName}}!</span>
                 </li>
-                <li>
+                <li v-if="!currentUser">
                     <NuxtLink class="navLink" to="/register">Register</NuxtLink>
                 </li>
-                <li>
+                <li v-if="!currentUser">
                     <NuxtLink class="navLink" to="/login">Login</NuxtLink>
                 </li>
-                <li>
+                <li v-if="currentUser">
                     <NuxtLink class="navLink" to="/rooms">Rooms</NuxtLink>
                 </li>
-                <li>
+                <li v-if="currentUser">
                     <NuxtLink class="navLink" to="/profile">Profile</NuxtLink>
                 </li>
             </ul>
@@ -63,7 +63,11 @@
     justify-content: space-between;
     max-width: 1300px;
     margin: 0 auto;
+}
 
+.greetings {
+    color: white;
+    font-size: 20px;
 }
 
 .logo {

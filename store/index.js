@@ -34,6 +34,10 @@ export const state = () => ({
         state.error = 'Please fill out all fields.'
       }
 
+    },
+
+    logout(state) {
+      state.currentUser = null;
     }
   }
   

@@ -50,12 +50,19 @@
         computed: {
             error() {
                 return this.$store.state.error;
+            },
+            currentUser() {
+                return this.$store.state.user
             }
         },
         methods: {
             handleLogin(e) {
                 e.preventDefault();
                 this.$store.commit('login', [email.value, password.value])
+
+                if (this.$store.state.currentUser) {
+                    this.$router.push('rooms');
+                }
             }
         }
     }
