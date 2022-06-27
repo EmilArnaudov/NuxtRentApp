@@ -1,31 +1,26 @@
 <template>
     <div class="wrapper">
-        THIS IS THE ROOM {{params.roomId}} PAGE
-
+        <RoomDetails></RoomDetails>
+        <div class="userInfo">dasdsadasd</div>
+        <NuxtChild></NuxtChild>    
     <div class="bg"></div>
     </div>
 </template>
 
 <script>
     export default {
-        data() {
-            return {
-
-        }},
-        computed: {
-            params() {
-                return this.$route.params
-            }
-        }
-
-    }
+    data() {
+        return {};
+    },
+}
 </script>
 
 
 <style scoped>
 .wrapper {
     background: #26261E;
-    padding: 50px;
+    padding: 35px;
+    padding-top: 15px;
     display: flex;
 }
 
@@ -37,5 +32,9 @@
     bottom: 0;
     background: #26261E;
     z-index: -100;
+}
+
+.userInfo {
+    width: 25%;
 }
 </style>

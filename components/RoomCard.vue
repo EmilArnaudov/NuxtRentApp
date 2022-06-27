@@ -5,7 +5,7 @@
             <img v-else src="../assets/images/room-small.jpg" alt="smallRoom">
         </div>
         <div class="content">
-            <h1 class="cardHeading">ROOM {{i+1}}</h1>
+            <h1 class="cardHeading">{{room.name.toUpperCase()}}</h1>
             <p class="size">Size: <span>{{room.size}}</span></p>
             <p class="free">Free spots: <span>{{freeSpots}}</span></p>
             <p class="cardDesc">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Labore, quia.</p>

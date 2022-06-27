@@ -1,11 +1,9 @@
 <template>
     <div>
-        THIS IS THE ROOM {{roomId}} DESKS PAGE
+        THIS IS THE ROOM DESKS PAGE
     </div>
 </template>
 
-<script setup>
-    const route = useRoute();
+<script >
 
-    const {roomId} = route.params;
 </script>
