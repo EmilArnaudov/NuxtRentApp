@@ -1,7 +1,8 @@
 <template>
-    <div class="card" v-bind:class="freeSpots ? '' : 'noFreeSpots'">
+    <div v-on="freeSpots ? { click: handleNavigate } : {}" class="card" :class="freeSpots ? '' : 'noFreeSpots'">
         <div class="imageContainer">
-            <img src="../assets/images/room-big.jpg" alt="">
+            <img v-if="room.size === 'Big'" src="../assets/images/room-big.jpg" alt="bigRoom">
+            <img v-else src="../assets/images/room-small.jpg" alt="smallRoom">
         </div>
         <div class="content">
             <h1 class="cardHeading">ROOM {{i+1}}</h1>
@@ -23,6 +24,12 @@
         computed: {
             freeSpots() {
                 return this.room.deskCapacity - this.room.desksTaken - 6
+            },
+        },
+        methods: {
+            handleNavigate() {
+                console.log('inside navigate');
+                this.$router.push(`rooms/${this.room._id}`)
             }
         }
     }
@@ -52,6 +59,9 @@
 .content > p > span {
     text-decoration: underline;
 }
+.cardDesc {
+    margin-top: 20px;
+}
 
 .size,
 .free {
@@ -63,6 +73,7 @@
     border-radius: 8px;
     transition: all 300ms ease-in;
     cursor: pointer;
+    height: 400px;
 }
 
 
@@ -73,6 +84,7 @@
 }
  .imageContainer > img {
     width: 100%;
+    height: 220px;
  }
 
 

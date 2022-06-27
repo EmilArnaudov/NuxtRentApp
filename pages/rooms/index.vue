@@ -3,7 +3,10 @@
         <RoomsGrid :allRooms="allRooms"></RoomsGrid>
         <div class="userInfo"></div>
         <div class="bg"></div>
+        <NuxtChild/>
     </div>
+
+
 </template>
 
 
