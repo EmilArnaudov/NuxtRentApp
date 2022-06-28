@@ -23,12 +23,11 @@
         },
         computed: {
             freeSpots() {
-                return this.room.deskCapacity - this.room.desksTaken - 6
+                return this.room.deskCapacity - this.room.desksTaken
             },
         },
         methods: {
             handleNavigate() {
-                console.log('inside navigate');
                 this.$router.push(`rooms/${this.room._id}`)
             }
         }

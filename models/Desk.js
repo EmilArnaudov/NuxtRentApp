@@ -1,8 +1,8 @@
 import {v4 as id} from 'uuid';
 
 class Desk {
-    constructor(price, size, position) {
-        this._id = id();
+    constructor(id, price, size, position) {
+        this._id = id;
         this.price = price;
         this.size = size;
         this.position = position;
@@ -14,3 +14,5 @@ class Desk {
         return {...this}
     }
 }
+
+export default Desk;

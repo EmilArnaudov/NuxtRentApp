@@ -1,11 +1,11 @@
-import {v4 as id} from 'uuid';
 
 class Room {
-    constructor(deskCapacity, size, name) {
-        this._id = id();
+    constructor(id, deskCapacity, size, name, deskIds) {
+        this._id = id;
         this.name = name;
         this.deskCapacity = deskCapacity;
         this.size = size;
+        this.deskIds = deskIds ? deskIds : [];
         this.desksTaken = 0;
         this.manager = 'admin';
     }
