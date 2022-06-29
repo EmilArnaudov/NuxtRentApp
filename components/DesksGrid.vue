@@ -3,7 +3,7 @@
     <h1 class="h">{{room.name}}</h1>
     <div class="grid">
         <div v-for="desk of desks" class="cell">
-            <DeskCard :room="room" :desk="desk"/>
+            <DeskCard @showForm="handleShowForm" :room="room" :desk="desk"/>
         </div>
     </div>
 </div>
@@ -33,6 +33,11 @@
             return desks;
         }
     },
+    methods: {
+        handleShowForm() {
+            this.$emit('showForm')
+        }
+    }
 }
 </script>
 

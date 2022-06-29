@@ -3,18 +3,30 @@
         <div class="gridContainer">
             <h1 class="heading">Available Desks</h1>
             <p></p>
-            <DesksGrid/>
+            <DesksGrid @showForm='handleShowForm'/>
         </div>
         
         <div class="userInfo">
-        <UserBookings/>
+        <RentDeskForm v-if="showForm"/>
+        <!-- <UserBookings/> -->
         </div>
         <div class="bg"></div>
     </div>
 </template>
 
 <script>
-
+export default {
+    data() {
+        return {
+            showForm: false,
+        }
+    },
+    methods: {
+        handleShowForm() {
+            this.showForm = true;
+        }
+    }
+}
 </script>
 
 <style scoped>
@@ -40,6 +52,9 @@
 
 .userInfo {
     width: 25%;
+    position: sticky;
+    top: 60px;
+    align-self: baseline;
 }
 
 .bg {

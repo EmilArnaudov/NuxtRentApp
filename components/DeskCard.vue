@@ -8,7 +8,7 @@
             <p class="free">Position: <span>{{desk.position}}</span></p>
             <p class="price">Price: <span>${{desk.price}} per week</span></p>
             <p class="available">Available: <span :class="desk.isTaken ? 'red' : 'green'">{{desk.isTaken ? 'in 10 days' : 'Yes'}}</span> </p>
-            <button v-if="!desk.isTaken" @click="rentDesk" class="btn">Rent Now</button>
+            <button v-if="!desk.isTaken" @click="handleShowForm" class="btnD">Rent</button>
         </div>
     </div>    
 </template>
@@ -16,9 +16,18 @@
 <script>
 export default {
     props: ['desk', 'room'],
+    data() {
+        return {
+            showForm: false,
+        }
+    },
     methods: {
         handleNavigate() {
             this.$router.push(`/rooms/${this.room._id}/desks/${this.desk._id}`)
+        },
+        handleShowForm() {
+            this.$store.commit('desks/selectDeskToRent', this.desk)
+            this.$emit('showForm');
         },
         rentDesk() {
             this.$store.commit('desks/rentDesk', this.desk._id);
@@ -41,7 +50,7 @@ export default {
     height: 400px;
 }
 
-.btn {
+.btnD {
     display: block;
     margin: 0 auto;
     padding: 8px 12px;
