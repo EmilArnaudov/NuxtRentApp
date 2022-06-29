@@ -1,48 +1,73 @@
 <template>
-    <div class="card">
+    <div :class="!desk.isTaken ? '' : 'isTaken'" class="deskCard">
         <div class="imageContainer">
-            <img src="../assets/images/room-small.jpg" alt="smallRoom">
+            <img src="../assets/images/desk-card.jpg" alt="desk">
         </div>
         <div class="content">
-            <h1 class="cardHeading"></h1>
-            <p class="size">Size: <span></span></p>
-            <p class="free">Free spots: <span></span></p>
-            <p class="cardDesc">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Labore, quia.</p>
+            <p class="size">Size: <span>{{desk.size}}</span></p>
+            <p class="free">Position: <span>{{desk.position}}</span></p>
+            <p class="price">Price: <span>${{desk.price}} per week</span></p>
+            <p class="available">Available: <span :class="desk.isTaken ? 'red' : 'green'">{{desk.isTaken ? 'in 10 days' : 'Yes'}}</span> </p>
+            <button v-if="!desk.isTaken" @click="rentDesk" class="btn">Rent Now</button>
         </div>
     </div>    
 </template>
 
 <script>
+export default {
+    props: ['desk', 'room'],
+    methods: {
+        handleNavigate() {
+            this.$router.push(`/rooms/${this.room._id}/desks/${this.desk._id}`)
+        },
+        rentDesk() {
+            this.$store.commit('desks/rentDesk', this.desk._id);
+        }
+    },
+    // mounted() {
+    //     this.$store.commit('desks/rentDesk', this.desk._id);
+    // }
+}
 
 </script>
 
 <style>
 
-.card {
+.deskCard {
     background-color: #D4AD76;
     padding: 8px;
     border-radius: 8px;
     transition: all 300ms ease-in;
-    cursor: pointer;
     height: 400px;
 }
 
-.cardHeading {
-    margin: 8px 0;
-    color: #fff;
-    font-size: 21px;
-    font-weight: bold;
-    text-align: center;
+.btn {
+    display: block;
+    margin: 0 auto;
+    padding: 8px 12px;
+    font-weight: 600;
+    background-color: transparent;
+    color: white;
+    border: 1px solid white;
+    cursor: pointer;
 }
 
-.cardDesc {
+.price {
     color: #fff;
-    font-size: 15px;
-    line-height: 20px;
+    font-weight: bold;
+}
+
+.available {
+    color: #fff;
+    font-weight: bold;
+}
+
+.content {
+    padding: 8px;
 }
 
 .content > p {
-    margin-bottom: 8px;
+    margin-bottom: 14px;
     color: #fff;
 }
 
@@ -64,13 +89,18 @@
  }
 
 
- .noFreeSpots:hover {
-    border: none;
- }
- .noFreeSpots {
+ .isTaken {
     cursor: default;
     position: relative;
     opacity: 0.5;
+ }
+
+ .red {
+    color: rgb(237, 84, 84);
+ }
+
+ .green {
+    color: rgb(60, 145, 60);
  }
 
 </style>
