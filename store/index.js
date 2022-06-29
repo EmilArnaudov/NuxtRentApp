@@ -38,6 +38,10 @@ export const state = () => ({
 
     logout(state) {
       state.currentUser = null;
+    },
+
+    addRentedDesk(state, deskId) {
+      state.currentUser.rentedDesks.push(deskId)
     }
   }
   

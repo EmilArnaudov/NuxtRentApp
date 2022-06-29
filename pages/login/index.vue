@@ -64,7 +64,8 @@
                     this.$router.push('rooms');
                 }
             }
-        }
+        },
+        middleware: ['noAuth'],
     }
 
 </script>

@@ -9,11 +9,15 @@
                     <p class="roomName">Location {{room.name}} - Desk {{desk._id}}</p>
                     <div class="desc">
                         <p class="ch">Size: <span class="ct">{{desk.size}} </span></p>
-
                     </div>
                     <div class="desc">
-                     <p class="ch">Position: <span class="ct">{{desk.position}}</span></p>
-
+                        <p class="ch">Position: <span class="ct">{{desk.position}}</span></p>
+                    </div>
+                    <div class="desc">
+                        <p class="ch">Rented until: <span class="ct">{{desk.freeOn}}</span></p>
+                    </div>
+                    <div class="desc">
+                        <p class="ch">Rented by: <span class="ct">{{user.email === desk.rentedBy ? 'You' : desk.rentedBy}}</span></p>
                     </div>
                 </div>
             </div>
@@ -28,7 +32,12 @@
             return {
 
             }
-        }, 
+        },
+        computed: {
+            user() {
+                return this.$store.state.currentUser;
+            }
+        }
 
     }
 </script>

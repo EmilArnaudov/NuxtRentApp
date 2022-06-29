@@ -1,5 +1,5 @@
 <template>
-    <div :class="!desk.isTaken ? '' : 'isTaken'" class="deskCard">
+    <div :class="(desk.isTaken && desk.rentedBy !== currentUser.email) ? 'isTaken' : ''" class="deskCard">
         <div class="imageContainer">
             <img src="../assets/images/desk-card.jpg" alt="desk">
         </div>
@@ -7,8 +7,10 @@
             <p class="size">Size: <span>{{desk.size}}</span></p>
             <p class="free">Position: <span>{{desk.position}}</span></p>
             <p class="price">Price: <span>${{desk.price}} per week</span></p>
-            <p class="available">Available: <span :class="desk.isTaken ? 'red' : 'green'">{{desk.isTaken ? 'in 10 days' : 'Yes'}}</span> </p>
+            <p class="price green" v-if="desk.rentedBy === currentUser.email">You rent this desk!</p>
+            <p v-else class="available">Available: <span :class="desk.isTaken ? 'red' : 'green'">{{desk.isTaken ? desk.freeOn : 'Yes'}}</span> </p>
             <button v-if="!desk.isTaken" @click="handleShowForm" class="btnD">Rent</button>
+            <NuxtLink :to="`desks/${desk._id}`" v-if="desk.rentedBy === currentUser.email" class="btnD link">Desk Details</NuxtLink>
         </div>
     </div>    
 </template>
@@ -29,10 +31,12 @@ export default {
             this.$store.commit('desks/selectDeskToRent', this.desk)
             this.$emit('showForm');
         },
-        rentDesk() {
-            this.$store.commit('desks/rentDesk', this.desk._id);
-        }
     },
+    computed: {
+        currentUser() {
+            return this.$store.state.currentUser;
+        }
+    }
     // mounted() {
     //     this.$store.commit('desks/rentDesk', this.desk._id);
     // }
@@ -48,6 +52,11 @@ export default {
     border-radius: 8px;
     transition: all 300ms ease-in;
     height: 400px;
+}
+
+.link {
+    text-decoration: none;
+    width: fit-content;
 }
 
 .btnD {
@@ -108,7 +117,7 @@ export default {
     color: rgb(237, 84, 84);
  }
 
- .green {
+.content .green {
     color: rgb(60, 145, 60);
  }
 

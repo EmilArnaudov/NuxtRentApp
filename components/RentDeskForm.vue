@@ -1,6 +1,6 @@
 <template>
     <div class="container">
-        <div v-if="!deskRented">
+        <div v-if="!deskRented && !desk.isTaken">
             <h3 class="heading">Rent Desk</h3>
             <p class="p">Location: {{location}}</p>
             <p class="p">Size: {{desk.size}}</p>
@@ -57,8 +57,13 @@
                 this.amountT = Number(this.desk.price) * Number(e.target.value)
             },
             rentDeskHandler(e) {
-                this.$store.commit('desks/rentDesk', [this.desk._id, this.currentUser.email]);
+                this.$store.commit('desks/rentDesk', [this.desk._id, this.currentUser.email, this.selectedDuration]);
+                this.$store.commit('addRentedDesk', this.desk._id);
                 this.deskRented = true;
+                
+                setInterval(() => {
+                    this.deskRented = false;
+                }, 4000)
             }
         },
     }
