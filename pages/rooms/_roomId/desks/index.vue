@@ -6,7 +6,9 @@
             <DesksGrid/>
         </div>
         
-        <div class="userInfo">dasdsadasd</div>
+        <div class="userInfo">
+        <UserBookings/>
+        </div>
         <div class="bg"></div>
     </div>
 </template>
@@ -19,20 +21,21 @@
 .wrapper {
     background: #26261E;
     display: flex;
+    padding: 20px;
 }
 
 .gridContainer {
     width: 75%;
     display: flex;
     flex-direction: column;
-    gap: 20px;
 }
 
 .heading {
     font-size: 31px;
     font-weight: 500;
-    color: #be8836;
+    color: #D4AD76;
     text-align: center;
+    margin-bottom: 7px;
 }
 
 .userInfo {

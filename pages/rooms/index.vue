@@ -1,7 +1,9 @@
 <template>
     <div class="wrapper">
         <RoomsGrid :allRooms="allRooms"></RoomsGrid>
-        <div class="userInfo"></div>
+        <div class="userInfo">
+        <UserBookings/>
+        </div>
         <div class="bg"></div>
         <NuxtChild/>
     </div>
@@ -33,6 +35,7 @@ export default {
     background: #26261E;
     padding: 50px;
     display: flex;
+    gap: 30px;
 }
 
 .userInfo {

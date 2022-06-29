@@ -10,7 +10,10 @@ export const state = () => ({
   }
   
   export const mutations = {
-
+    rentDesk(state, id) {
+     let desk =  state.desks.find(x => x._id === id); 
+     desk.isTaken = true;
+    }
   }
   
   export const actions = {

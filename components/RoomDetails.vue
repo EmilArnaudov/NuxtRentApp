@@ -82,7 +82,7 @@
 }
 .container {
     width: 55%;
-    height: 450px;
+
     margin: 0 auto;
 }
 
@@ -91,6 +91,7 @@
     padding: 8px;
     border-radius: 8px;
     width: 70%;
+    height: 85vh;
     margin: 0 auto;
 }
 

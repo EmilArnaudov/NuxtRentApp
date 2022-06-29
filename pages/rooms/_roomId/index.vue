@@ -1,7 +1,9 @@
 <template>
     <div class="wrapper">
         <RoomDetails></RoomDetails>
-        <div class="userInfo">dasdsadasd</div>
+        <div class="userInfo">
+        <UserBookings/>
+        </div>
         <NuxtChild></NuxtChild>    
     <div class="bg"></div>
     </div>
