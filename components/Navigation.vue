@@ -34,9 +34,6 @@
             }
         },
         methods: {
-            handleLogin(e) {
-                this.$store.commit('login')
-            }
         },
         computed: {
             currentUser() {

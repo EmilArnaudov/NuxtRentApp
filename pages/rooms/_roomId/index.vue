@@ -14,6 +14,7 @@
     data() {
         return {};
     },
+    middleware: "auth",
 }
 </script>
 

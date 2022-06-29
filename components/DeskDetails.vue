@@ -6,21 +6,15 @@
             </div>
             <div class="content">
                 <div class="left">
-                    <p class="roomName">${{desk.price}} per week</p>
+                    <p class="roomName">Location {{room.name}} - Desk {{desk._id}}</p>
                     <div class="desc">
-                        <p class="ch">Size</p>
-                        <p class="ct">{{desk.size}} </p>
+                        <p class="ch">Size: <span class="ct">{{desk.size}} </span></p>
+
                     </div>
                     <div class="desc">
-                        <p class="ch">Position</p>
-                        <p class="ct">{{desk.position}}</p>
+                     <p class="ch">Position: <span class="ct">{{desk.position}}</span></p>
+
                     </div>
-                </div>
-                <div class="right">
-                    <p class="location">Location {{room.name}} - Desk {{desk._id}}</p>
-
-                    <NuxtLink class="link" :to="`/rooms/${desk._id}/desks`">Rent Now</NuxtLink>
-
                 </div>
             </div>
         </div>
@@ -106,14 +100,9 @@
 }
 
 .left {
-    width: 40%;
     display: flex;
     flex-direction: column;
     gap: 15px;
-}
-
-.right {
-width: 60%;
 }
 
 .roomName {
@@ -131,13 +120,13 @@ width: 60%;
 .ct {
     color: white;
     text-decoration: underline;
+    font-size: 16px;
 }
 
 .desc {
     display: flex;
     flex-direction: column;
     gap: 7px;
-    margin-bottom: 20px;
 }
 
 .grid {

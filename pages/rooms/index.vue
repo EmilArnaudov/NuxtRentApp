@@ -23,7 +23,8 @@ export default {
         allRooms() {
             return this.$store.state.rooms.rooms
         }
-    }
+    },
+    middleware: "auth",
 }
 
 </script>

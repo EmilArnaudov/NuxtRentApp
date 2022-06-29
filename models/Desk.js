@@ -8,6 +8,7 @@ class Desk {
         this.position = position;
         this.isTaken = false;
         this.timePaidFor = null;
+        this.rentedBy = null;
     }
 
     toJSON() {

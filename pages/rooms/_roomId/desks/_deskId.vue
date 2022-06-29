@@ -28,7 +28,8 @@
             const room = this.$store.state.rooms.rooms.find(x => x._id === id);
             return room;
         },
-        }
+    },
+    middleware: "auth",
 
 }
 </script>

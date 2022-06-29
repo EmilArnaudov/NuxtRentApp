@@ -25,7 +25,8 @@ export default {
         handleShowForm() {
             this.showForm = true;
         }
-    }
+    },
+    middleware: "auth",
 }
 </script>
 

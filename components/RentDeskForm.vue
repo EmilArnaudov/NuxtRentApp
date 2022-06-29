@@ -45,6 +45,10 @@
             },
             amount() {
                 return Number(this.desk.price) * Number(this.selectedDuration);
+            },
+            currentUser() {
+                console.log(this.$store.state.currentUser);
+                return this.$store.state.currentUser
             }
 
         },
@@ -53,7 +57,7 @@
                 this.amountT = Number(this.desk.price) * Number(e.target.value)
             },
             rentDeskHandler(e) {
-                this.$store.commit('desks/rentDesk', this.desk._id);
+                this.$store.commit('desks/rentDesk', [this.desk._id, this.currentUser.email]);
                 this.deskRented = true;
             }
         },
