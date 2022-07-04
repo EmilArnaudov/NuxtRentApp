@@ -28,8 +28,16 @@
             currentUser() {
                 return this.$store.state.currentUser
             },
+            hasUserRentedDeskInRoom() {
+                for (const deskId of this.currentUser.rentedDesks) {
+                    if (this.room.deskIds.includes(deskId)) {
+                        return true;
+                    }
+                }
+                return false;
+            },
             disableClick() {
-                return this.freeSpots || (this.currentUser.role === 'admin'|| (this.room.manager === this.currentUser.email))
+                return this.freeSpots || (this.currentUser.role === 'admin'|| this.room.manager === this.currentUser.email || this.hasUserRentedDeskInRoom)
             }
         },
         methods: {

@@ -52,6 +52,7 @@ export default {
         handleRegister(e) {
             e.preventDefault();
             this.$store.commit('register', [fullName.value, email.value, password.value]);
+            this.$router.push('/rooms');
         }
     },
     computed: {
