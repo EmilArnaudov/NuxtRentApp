@@ -29,7 +29,7 @@
                 return this.$store.state.currentUser
             },
             disableClick() {
-                return this.freeSpots || (this.currentUser.role === 'admin'|| (this.currentUser.role === 'roomManager' && this.currentUser.roomsManaged.includes(this.room._id)))
+                return this.freeSpots || (this.currentUser.role === 'admin'|| (this.room.manager === this.currentUser.email))
             }
         },
         methods: {

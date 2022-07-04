@@ -1,5 +1,5 @@
 <template>
-    <div :class="(desk.isTaken && desk.rentedBy !== currentUser.email && currentUser.role !== 'admin') ? 'isTaken' : ''" class="deskCard">
+    <div :class="(desk.isTaken && desk.rentedBy !== currentUser.email && currentUser.role !== 'admin' && room.manager !== currentUser.email) ? 'isTaken' : ''" class="deskCard">
         <div class="imageContainer">
             <img src="../assets/images/desk-card.jpg" alt="desk">
         </div>
@@ -40,7 +40,7 @@ export default {
             return this.$store.state.currentUser;
         },
         showLink() {
-            return this.desk.rentedBy === this.currentUser.email || this.currentUser.role === 'admin'|| (this.currentUser.role === 'roomManager' && this.currentUser.roomsManaged.includes(this.desk.roomId))
+            return this.desk.rentedBy === this.currentUser.email || this.currentUser.role === 'admin'|| this.room.manager === this.currentUser.email
         }
     }
     // mounted() {
