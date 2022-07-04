@@ -6,7 +6,7 @@ export default class User {
         this.fullName = fullName;
         this.email = email;
         this.password = password;
-        this.role = role;
+        this.role = role ? role : 'client';
         this.roomsManaged = [];
         this.rentedDesks = [];
     }

@@ -14,6 +14,12 @@
                 <li v-if="!currentUser">
                     <NuxtLink class="navLink" to="/login">Login</NuxtLink>
                 </li>
+                <li v-if="currentUser && currentUser.role === 'admin'">
+                    <NuxtLink class="navLink" to="/desks">Desks</NuxtLink>
+                </li>
+                <li v-if="currentUser && currentUser.role === 'admin'">
+                    <NuxtLink class="navLink" to="/users">Users</NuxtLink>
+                </li>
                 <li v-if="currentUser">
                     <NuxtLink class="navLink" to="/rooms">Rooms</NuxtLink>
                 </li>

@@ -1,5 +1,5 @@
 <template>
-    <div :class="(desk.isTaken && desk.rentedBy !== currentUser.email) ? 'isTaken' : ''" class="deskCard">
+    <div :class="(desk.isTaken && desk.rentedBy !== currentUser.email && currentUser.role !== 'admin') ? 'isTaken' : ''" class="deskCard">
         <div class="imageContainer">
             <img src="../assets/images/desk-card.jpg" alt="desk">
         </div>
@@ -7,10 +7,13 @@
             <p class="size">Size: <span>{{desk.size}}</span></p>
             <p class="free">Position: <span>{{desk.position}}</span></p>
             <p class="price">Price: <span>${{desk.price}} per week</span></p>
-            <p class="price green" v-if="desk.rentedBy === currentUser.email">You rent this desk!</p>
+            <p class="price green rd" v-if="desk.rentedBy === currentUser.email">You rent this desk!</p>
             <p v-else class="available">Available: <span :class="desk.isTaken ? 'red' : 'green'">{{desk.isTaken ? desk.freeOn : 'Yes'}}</span> </p>
-            <button v-if="!desk.isTaken" @click="handleShowForm" class="btnD">Rent</button>
-            <NuxtLink :to="`desks/${desk._id}`" v-if="desk.rentedBy === currentUser.email" class="btnD link">Desk Details</NuxtLink>
+            <div class="buttons">
+                <button v-if="!desk.isTaken" @click="handleShowForm" class="btnD">Rent</button>
+                <NuxtLink :to="`desks/${desk._id}`" v-if="showLink"  class="btnD link" >Desk Details</NuxtLink>
+            </div>
+
         </div>
     </div>    
 </template>
@@ -35,6 +38,9 @@ export default {
     computed: {
         currentUser() {
             return this.$store.state.currentUser;
+        },
+        showLink() {
+            return this.desk.rentedBy === this.currentUser.email || this.currentUser.role === 'admin'|| (this.currentUser.role === 'roomManager' && this.currentUser.roomsManaged.includes(this.desk.roomId))
         }
     }
     // mounted() {
@@ -45,13 +51,21 @@ export default {
 </script>
 
 <style>
+.buttons {
+    display: flex;
+    margin-top: 12px;
+}
 
+.rd {
+    text-align: center;
+}
 .deskCard {
     background-color: #D4AD76;
     padding: 8px;
     border-radius: 8px;
     transition: all 300ms ease-in;
-    height: 400px;
+    min-height: 430px;
+
 }
 
 .link {
@@ -68,6 +82,8 @@ export default {
     color: white;
     border: 1px solid white;
     cursor: pointer;
+    font-size: 14px;
+    margin-bottom: 12px;
 }
 
 .price {
@@ -82,6 +98,7 @@ export default {
 
 .content {
     padding: 8px;
+    height: fit-content;
 }
 
 .content > p {

@@ -12,6 +12,14 @@ export const state = () => ({
   }
   
   export const mutations = {
+    rentDesk(state, roomId) {
+      let room = state.rooms.find(x => x._id === roomId);
+      room.desksTaken += 1
+    },
+    freeDesk(state, roomId) {
+      let room = state.rooms.find(x => x._id === roomId);
+      room.desksTaken -= 1
+    },
 
   }
   

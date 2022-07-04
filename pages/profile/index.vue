@@ -7,6 +7,7 @@
                 </div>
                 <p>{{user.fullName}}</p>
                 <p>{{user.email}}</p>
+                <button @click="handleLogout">Logout</button>
             </div>
             <div class="desks">
                 <div v-for="desk of desks">
@@ -38,6 +39,12 @@ export default {
             return desksArr;
       }
     },
+    methods: {
+        handleLogout() {
+            this.$store.commit('logout');
+            this.$router.push('/login');
+        }
+    }
 
 
 }

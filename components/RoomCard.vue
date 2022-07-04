@@ -1,5 +1,5 @@
 <template>
-    <div v-on="freeSpots ? { click: handleNavigate } : {}" class="card" :class="freeSpots ? '' : 'noFreeSpots'">
+    <div v-on="disableClick ? { click: handleNavigate } : {}" class="card" :class="disableClick ? '' : 'noFreeSpots'">
         <div class="imageContainer">
             <img v-if="room.size === 'Big'" src="../assets/images/room-big.jpg" alt="bigRoom">
             <img v-else src="../assets/images/room-small.jpg" alt="smallRoom">
@@ -7,7 +7,7 @@
         <div class="content">
             <h1 class="cardHeading">{{room.name.toUpperCase()}}</h1>
             <p class="size">Size: <span>{{room.size}}</span></p>
-            <p class="free">Free spots: <span>{{freeSpots}}</span></p>
+            <p class="free">Free spots: <span :class="freeSpots ? 'green' : 'red'">{{freeSpots}}</span></p>
             <p class="cardDesc">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Labore, quia.</p>
         </div>
     </div>
@@ -25,6 +25,12 @@
             freeSpots() {
                 return this.room.deskCapacity - this.room.desksTaken
             },
+            currentUser() {
+                return this.$store.state.currentUser
+            },
+            disableClick() {
+                return this.freeSpots || (this.currentUser.role === 'admin'|| (this.currentUser.role === 'roomManager' && this.currentUser.roomsManaged.includes(this.room._id)))
+            }
         },
         methods: {
             handleNavigate() {
@@ -94,6 +100,14 @@
     cursor: default;
     position: relative;
     opacity: 0.5;
+ }
+
+ .green {
+    color: green;
+ }
+
+ .red {
+    color: red;
  }
 
 </style>

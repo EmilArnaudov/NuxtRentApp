@@ -52,7 +52,6 @@
             room() {
                 const id = Number(this.$route.params.roomId)
                 const room = this.$store.state.rooms.rooms.find(x => x._id === id);
-                console.log(room, id);
 
                 return room;
             },

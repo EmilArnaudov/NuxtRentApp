@@ -47,5 +47,5 @@ export default {
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
   },
-  middleware: ["auth", "noAuth"],
+  middleware: ["auth", "noAuth", "isAdmin"],
 }
