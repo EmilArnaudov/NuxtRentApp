@@ -154,8 +154,6 @@
     gap: 4px
 }
 
-.label {}
-
 .bg {
     position: absolute;
     top: 0;

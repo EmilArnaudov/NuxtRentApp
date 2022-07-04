@@ -47,7 +47,6 @@
                 return Number(this.desk.price) * Number(this.selectedDuration);
             },
             currentUser() {
-                console.log(this.$store.state.currentUser);
                 return this.$store.state.currentUser
             }
 
@@ -63,7 +62,7 @@
                 
                 setInterval(() => {
                     this.deskRented = false;
-                }, 4000)
+                }, 1500)
             }
         },
     }
