@@ -1,7 +1,11 @@
 <template>
     <div class="wrapper">
-
-
+        <div class="card">
+            <h1>Admin Panel - Users</h1>
+            <div v-for="user of users">
+                <AdminUser :user="user" ></AdminUser>
+            </div>
+         </div>
         <div class="bg"></div>
     </div>
 </template>
@@ -9,10 +13,31 @@
 <script>
 export default {
     middleware: 'isAdmin',
+    computed: {
+        users() {
+            return this.$store.state.users
+        }
+    }
 }
 </script>
 
 <style scoped>
+h1 {
+    color: #fff;
+    font-weight: 500;
+    font-size: 18px;
+    text-align: center;
+}
+.card {
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: #D4AD76;
+    padding: 15px;
+    border-radius: 4px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
 .wrapper {
     background: #26261E;
     padding: 60px;
