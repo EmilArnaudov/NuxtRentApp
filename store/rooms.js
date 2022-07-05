@@ -14,13 +14,17 @@ export const state = () => ({
   export const mutations = {
     rentDesk(state, [roomId, deskId]) {
       let room = state.rooms.find(x => x._id === roomId);
-      room.deskIds.push(deskId)
       room.desksTaken += 1
     },
     freeDesk(state, [roomId, deskId]) {
       let room = state.rooms.find(x => x._id === roomId);
       room.desksTaken -= 1
-      room.deskIds = room.deskIds.filter(x => x._id !== deskId);
+    },
+    deleteDesk(state, [roomId, deskId]) {
+      let room = state.rooms.find(x => x._id === roomId);
+      console.log(room.deskIds);
+      room.deskIds = room.deskIds.filter(x => x !== deskId)
+      console.log(room.deskIds);
     },
     changeRoomManager(state, props) {
       const [roomId, manager] = props;

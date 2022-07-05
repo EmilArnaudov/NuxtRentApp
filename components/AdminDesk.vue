@@ -3,10 +3,19 @@
         <div class="deskImageContainer">
             <img src="../assets/images/desk-card.jpg" alt="desk">
         </div>
-        <p class="ch"> Room{{desk.roomId}} - Desk {{desk._id}}</p>
-        <p class="ch"><span class="ct">{{desk.size}} </span></p>
-        <p class="ch"><span class="ct">{{desk.position}}</span></p>
-        <p class="ch">Rented until: <span class="ct">{{desk.freeOn}}</span></p>
+        <div>
+            <div class="flex">
+                <p class="ch"> Room{{desk.roomId}} - Desk {{desk._id}}</p>
+                <p class="ch"><span class="ct">{{desk.size}} </span></p>
+                <p class="ch"><span class="ct">{{desk.position}}</span></p>
+                <p class="ch">Rented until: <span class="ct">{{desk.freeOn}}</span></p>
+            </div>
+            <div class="buttons">
+                <button @click="removeDesk" class="button red">Remove Desk</button>
+                <button @click="freeDesk" :class="!desk.isTaken ? 'op' : ''" :disabled="!desk.isTaken" class="button red">Free Desk</button>
+            </div>
+        </div>
+
 
     </div>
 </template>
@@ -14,11 +23,48 @@
 <script>
 export default {
     props: ['desk'],
+    methods: {
+        freeDesk() {
+            this.$store.commit('removeRentedDesk', [this.desk._id, this.desk.rentedBy]);
+            this.$store.commit('desks/freeDesk', this.desk._id);
+            this.$store.commit('rooms/freeDesk', [this.desk.roomId, this.desk._id]);
+        },
+        removeDesk() {
+            if (this.desk.isTaken) {
+                this.$store.commit('removeRentedDesk', [this.desk._id, this.desk.rentedBy]);
+                this.$store.commit('rooms/freeDesk', [this.desk.roomId, this.desk._id]);
+            }
+            this.$store.commit('rooms/deleteDesk', [this.desk.roomId, this.desk._id]);
+            this.$store.commit('desks/deleteDesk', this.desk._id);
+            console.log(this.$store.state.rooms.rooms);
+        }
+    }
 }
 </script>
 
 <style scoped>
+.red {
+    font-weight: 500;
+    color: red;
+    border: none;
+    border: 1px solid red;
+    background-color: transparent;
+    cursor: pointer;
+}
 
+.buttons {
+    display: flex;
+    gap: 12px;
+}
+.flex {
+    display: flex;
+    gap: 27px;
+}
+
+.op {
+    opacity: 0.5;
+    cursor: default;
+}
 .ch {
     color: white;
     font-weight: 500;

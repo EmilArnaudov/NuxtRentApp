@@ -32,6 +32,9 @@ export const state = () => ({
       desk.rentedBy = null;
       desk.isTaken = false;
       desk.freeOn = null;
+    },
+    deleteDesk(state, deskId) {
+      state.desks = state.desks.filter(x => x._id !== deskId);
     }
   }
   

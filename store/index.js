@@ -43,6 +43,11 @@ export const state = () => ({
       state.currentUser.rentedDesks.push(deskId)
     },
 
+    removeRentedDesk(state, [deskId, email]) {
+      let user = state.users.find(x => x.email === email);
+      user.rentedDesks = user.rentedDesks.filter(x => x !== deskId);
+    },
+
     promoteToManager(state, email) {
       let user = state.users.find(x => x.email === email);
       user.role = 'RoomManager'
