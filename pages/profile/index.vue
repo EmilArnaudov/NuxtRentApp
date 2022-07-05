@@ -7,7 +7,7 @@
                 </div>
                 <p>{{user.fullName}}</p>
                 <p>{{user.email}}</p>
-                <button @click="handleLogout">Logout</button>
+                <button class="button" @click="handleLogout">Logout</button>
             </div>
             <div class="desks">
                 <div v-for="desk of desks">
@@ -51,7 +51,15 @@ export default {
 </script>
 
 <style scoped>
-
+.button {
+    padding: 6px 10px;
+    color: #fff;
+    border: none;
+    border: 1px solid #fff;
+    background-color: transparent;
+    cursor: pointer;
+    font-weight: 600;
+}
 .imageContainer {
     margin: 0 auto;
     width: 100px;

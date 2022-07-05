@@ -12,7 +12,7 @@
 
 <script>
 export default {
-    middleware: 'isAdmin',
+    middleware: ['auth', 'isAdmin'],
     computed: {
         desks() {
             return this.$store.state.desks.desks

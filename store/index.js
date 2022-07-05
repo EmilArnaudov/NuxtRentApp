@@ -1,7 +1,7 @@
 import User from '../models/User';
 
 export const state = () => ({
-    users: [new User('Emil', 'mail.bg', '123'), new User('Admin', 'admin', 'admin', 'admin'), new User('Kamil', 'mail.b', '123', 'RoomManager')],
+    users: [new User('Emil', 'mail.bg', '123'), new User('Admin', 'admin', 'admin', 'admin')],
     currentUser: null,
     error: ''
   })
@@ -33,7 +33,6 @@ export const state = () => ({
       } else {
         state.error = 'Please fill out all fields.'
       }
-
     },
 
     logout(state) {
@@ -42,6 +41,26 @@ export const state = () => ({
 
     addRentedDesk(state, deskId) {
       state.currentUser.rentedDesks.push(deskId)
+    },
+
+    promoteToManager(state, email) {
+      let user = state.users.find(x => x.email === email);
+      user.role = 'RoomManager'
+    },
+    addManagedRoom(state, props) {
+      const [roomId, email] = props;
+
+      let user = state.users.find(x => x.email === email);
+      user.roomsManaged.push(roomId);
+    },
+    demoteManager(state, email) {
+      let user = state.users.find(x => x.email === email);
+      user.role = 'client'
+    },
+    removeManagedRoom(state, props) {
+      const [roomId, email] = props;
+      let user = state.users.find(x => x.email === email);
+      user.roomsManaged = [];
     }
   }
   

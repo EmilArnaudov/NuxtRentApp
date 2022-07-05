@@ -7,6 +7,6 @@ export function getDeskFreeDate(weeks) {
         year: 'numeric'
     });
 
-    console.log(Date.now(), weeks, msWeeks, futureDate, formattedData);
+    
     return formattedData;
 }

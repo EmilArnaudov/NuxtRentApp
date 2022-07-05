@@ -3,7 +3,7 @@
     <h3 class="heading">My active bookings</h3>
     <div class="bookings">
         <div v-for="desk of desks" class="booking">
-            <NuxtLink class="deskLink" :to="`/rooms/${desk.roomId}/desks/${desk._id}`">Desk {{desk._id}}</NuxtLink>
+            <NuxtLink class="deskLink" :to="`/rooms/${desk.roomId}/desks/${desk._id}`">Room {{desk.roomId}} Desk {{desk._id}}</NuxtLink>
         </div>
     </div>
 
@@ -32,18 +32,24 @@
 .userBookings {
     background-color: transparent;
     padding: 20px;
-    border-radius: 8px;
     color: #D4AD76;
     border: 1px solid #D4AD76;
     height: 84vh;
     position: sticky;
     top: 60px;
     align-self: baseline;
+
+    overflow-y: scroll;
 }
 
 .deskLink {
   display: block;
+  text-decoration: none;
   width: 100%;
+  padding: 8px;
+  color: white;
+  font-size: 18px;
+
 }
 
 .bookings {

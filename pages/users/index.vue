@@ -12,7 +12,7 @@
 
 <script>
 export default {
-    middleware: 'isAdmin',
+    middleware: ['auth', 'isAdmin'],
     computed: {
         users() {
             return this.$store.state.users
