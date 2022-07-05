@@ -21,7 +21,7 @@
             <button class="button red" @click="demote" >Demote</button>
         </div>
 
-        <button v-if="user.role !== 'admin'" class="button red">Delete</button>
+        <button v-if="user.role !== 'admin'" @click="ban" class="button red">Ban</button>
 
     </div>
 </template>
@@ -38,7 +38,7 @@ export default {
     computed: {
         roomsWithoutManager() {
             return this.$store.state.rooms.rooms.filter(x => x.manager === 'admin');
-        }
+        },
     },
     methods: {
         promote() {
@@ -50,11 +50,25 @@ export default {
             this.roomId =  ''
         }, 
         demote() {
-            console.log(this.user.roomsManaged[0]);
             this.$store.commit('rooms/demoteRoomManager', this.user.roomsManaged[0]);
             this.$store.commit('demoteManager', this.user.email);
             this.$store.commit('removeManagedRoom', [this.roomId, this.user.email])
-        }, 
+        },
+        ban() {
+            if (this.user.roomsManaged[0]) {
+                this.demote();
+            }
+
+            if (this.user.rentedDesks.length) {
+                for (const deskId of this.user.rentedDesks) {
+                    const desk = this.$store.state.desks.desks.find(x => x._id === deskId);
+                    this.$store.commit('desks/freeDesk', deskId);
+                    this.$store.commit('rooms/freeDesk', [desk.roomId, deskId])
+                }
+            }
+
+            this.$store.commit('banUser', this.user.email);
+        }
     }
 }
 </script>

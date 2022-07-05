@@ -25,6 +25,13 @@ export const state = () => ({
     },
     resetSelectedDesk(state) {
       state.selectDeskToRent = null;
+    },
+    freeDesk(state, deskId) {
+      let desk =  state.desks.find(x => x._id === deskId);
+      desk.timePaidFor = null;
+      desk.rentedBy = null;
+      desk.isTaken = false;
+      desk.freeOn = null;
     }
   }
   

@@ -61,6 +61,9 @@ export const state = () => ({
       const [roomId, email] = props;
       let user = state.users.find(x => x.email === email);
       user.roomsManaged = [];
+    },
+    banUser(state, email) {
+      state.users = state.users.filter(x => x.email !== email);
     }
   }
   

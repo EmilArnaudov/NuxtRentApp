@@ -12,13 +12,15 @@ export const state = () => ({
   }
   
   export const mutations = {
-    rentDesk(state, roomId) {
+    rentDesk(state, [roomId, deskId]) {
       let room = state.rooms.find(x => x._id === roomId);
+      room.deskIds.push(deskId)
       room.desksTaken += 1
     },
-    freeDesk(state, roomId) {
+    freeDesk(state, [roomId, deskId]) {
       let room = state.rooms.find(x => x._id === roomId);
       room.desksTaken -= 1
+      room.deskIds = room.deskIds.filter(x => x._id !== deskId);
     },
     changeRoomManager(state, props) {
       const [roomId, manager] = props;

@@ -57,7 +57,7 @@
             },
             rentDeskHandler(e) {
                 this.$store.commit('desks/rentDesk', [this.desk._id, this.currentUser.email, this.selectedDuration]);
-                this.$store.commit('rooms/rentDesk', this.desk.roomId);
+                this.$store.commit('rooms/rentDesk', [this.desk.roomId, this.desk._id]);
                 this.$store.commit('addRentedDesk', this.desk._id);
                 this.deskRented = true;
                 
