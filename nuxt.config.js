@@ -5,6 +5,7 @@ export default {
   // Target: https://go.nuxtjs.dev/config-target
   target: 'static',
 
+
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
     title: 'Rentworks',
@@ -20,7 +21,8 @@ export default {
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
     ],
-    script: [{src: 'https://kit.fontawesome.com/23974976cf.js', async: true, crossorigin: 'anonymous'},]
+    script: [{src: 'https://kit.fontawesome.com/23974976cf.js', async: true, crossorigin: 'anonymous'},],
+    base: '/NuxtRentApp/'
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
