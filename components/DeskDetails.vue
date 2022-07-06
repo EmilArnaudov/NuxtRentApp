@@ -21,6 +21,9 @@
                         <p v-if="desk.rentedBy" class="ch">Rented by: <span class="ct">{{user.email === desk.rentedBy ? 'You' : desk.rentedBy}}</span></p>
                         <p v-else class="ch">Rented by: <span class="ct">Not rented yet</span></p>
                     </div>
+                    <div class="desc">
+                        <p class="ch">Amount paid: <span class="ct">${{Number(desk.timePaidFor) * desk.price}}</span></p>
+                    </div>
                 </div>
             </div>
         </div>

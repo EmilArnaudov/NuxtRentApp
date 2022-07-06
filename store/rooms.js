@@ -1,8 +1,9 @@
 import Room from '../models/Room';
 
 export const state = () => ({
-    rooms: [new Room(1, 6, 'Small', 'Room 1', [1,2,3,4,5,6]), new Room(2, 12, 'Big', 'Room 2'), new Room(3, 6, 'Small', 'Room 3'), 
-    new Room(4, 12, 'Big', 'Room 4'), new Room(5, 6, 'Small', 'Room 5'), new Room(6, 6, 'Small', 'Room 6')]
+    rooms: [new Room(1, 'Small', 'Room 1', [1,2,3,4], 'manager'), new Room(2, 'Big', 'Room 2', [5,6,7,8, 9, 10]),
+     new Room(3, 'Small', 'Room 3', [11,12,13]), new Room(4, 'Big', 'Room 4', [14, 15, 16, 17, 18]), 
+     new Room(5, 'Small', 'Room 5', [19,20]), new Room(6, 'Small', 'Room 6')]
   })
   
   export const getter = {

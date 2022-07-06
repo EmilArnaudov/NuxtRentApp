@@ -1,7 +1,7 @@
 import User from '../models/User';
 
 export const state = () => ({
-    users: [new User('Emil', 'mail.bg', '123'), new User('Admin', 'admin', 'admin', 'admin')],
+    users: [new User('Guest Guestov', 'client', 'client'), new User('Admin', 'admin', 'admin', 'admin'), new User('Manager 1', 'manager', 'manager', 'RoomManager', [1])],
     currentUser: null,
     error: ''
   })

@@ -1,6 +1,6 @@
 
 class Room {
-    constructor(id, deskCapacity, size, name, deskIds, manager) {
+    constructor(id, size, name, deskIds, manager) {
         this._id = id;
         this.name = name;
         this.size = size;

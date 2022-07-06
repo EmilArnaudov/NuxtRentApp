@@ -111,7 +111,7 @@ export default {
     display: flex;
     border: 1px solid #26261E;
     border-radius: 4px;
-    gap: 27px;
+    gap: 20px;
     align-items: center;
 }
 
