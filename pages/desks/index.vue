@@ -2,6 +2,11 @@
     <div class="wrapper">
         <div class="card">
             <h1>Admin Panel - Desks</h1>
+            <div>
+                <button @click="showForm = true;" class="addBtn">+ Add a Desk</button>
+                <AdminAddDeskForm v-if="showForm"></AdminAddDeskForm>
+            </div>
+
             <div v-for="desk of desks">
                 <AdminDesk :desk="desk" ></AdminDesk>
             </div>
@@ -13,6 +18,11 @@
 <script>
 export default {
     middleware: ['auth', 'isAdmin'],
+    data() {
+        return {
+            showForm: false
+        }
+    },
     computed: {
         desks() {
             return this.$store.state.desks.desks
@@ -22,6 +32,16 @@ export default {
 </script>
 
 <style scoped>
+
+.addBtn {
+    width: fit-content;
+    padding: 8px 14px;
+    border: none;
+    color: green;
+    border: 1px solid green;
+    cursor: pointer;
+    background-color: transparent;
+}
 h1 {
     color: #fff;
     font-weight: 500;

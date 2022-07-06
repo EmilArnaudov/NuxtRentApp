@@ -34,7 +34,11 @@ export const state = () => ({
     demoteRoomManager(state, roomId) {
       let room = state.rooms.find(x => x._id === roomId);
       room.manager = 'admin';
-    }
+    },
+    addNewDesk(state, [roomId, deskId]) {
+      let room = state.rooms.find(x => x._id === roomId);
+      room.deskIds.push(deskId);
+    },
 
   }
   

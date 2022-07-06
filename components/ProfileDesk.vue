@@ -11,8 +11,8 @@
                 <p class="ch">Rented until: <span class="ct">{{desk.freeOn}}</span></p>
             </div>
             <div class="center">
-                <button class="button">Go to desk</button>
-                <button class="button red">Cancel</button>
+                <button @click="navigate" class="button">Go to desk</button>
+                <button @click="freeDesk" class="button red">Cancel</button>
             </div>
         </div>
 
@@ -23,6 +23,16 @@
 <script>
 export default {
     props: ['desk'],
+    methods: {
+        navigate() {
+            this.$router.push(`/rooms/${this.desk.roomId}/desks/${this.desk._id}`)
+        },
+        freeDesk() {
+            this.$store.commit('removeRentedDesk', [this.desk._id, this.desk.rentedBy]);
+            this.$store.commit('desks/freeDesk', this.desk._id);
+            this.$store.commit('rooms/freeDesk', [this.desk.roomId, this.desk._id]);
+        }
+    }
 }
 </script>
 

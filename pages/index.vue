@@ -3,7 +3,7 @@
         <div class="headingContainer">
             <h1 class="heading">Find your personal work space</h1>
             <p class="subheading">We offer you a wide range of fully equipped workspaces and a positive work environment</p>
-            <button class="btn">Get Started</button>
+            <NuxtLink to="/login" class="btn">Get Started</NuxtLink>
         </div>
 
         <div class="bg"></div>
@@ -37,6 +37,7 @@
 
 .btn {
     background-color: transparent;
+    text-decoration: none;
     max-width: fit-content;
     color: #be8836;
     border: 1px solid #be8836;

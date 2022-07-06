@@ -1,11 +1,12 @@
 <template>
     <div class="cardDesk">
+
         <div class="deskImageContainer">
             <img src="../assets/images/desk-card.jpg" alt="desk">
         </div>
         <div>
             <div class="flex">
-                <p class="ch"> Room{{desk.roomId}} - Desk {{desk._id}}</p>
+                <p class="ch"> Room {{desk.roomId}} - Desk {{desk._id}}</p>
                 <p class="ch"><span class="ct">{{desk.size}} </span></p>
                 <p class="ch"><span class="ct">{{desk.position}}</span></p>
                 <p class="ch">Rented until: <span class="ct">{{desk.freeOn}}</span></p>
@@ -36,7 +37,6 @@ export default {
             }
             this.$store.commit('rooms/deleteDesk', [this.desk.roomId, this.desk._id]);
             this.$store.commit('desks/deleteDesk', this.desk._id);
-            console.log(this.$store.state.rooms.rooms);
         }
     }
 }
