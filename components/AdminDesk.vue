@@ -9,7 +9,8 @@
                 <p class="ch"> Room {{desk.roomId}} - Desk {{desk._id}}</p>
                 <p class="ch"><span class="ct">{{desk.size}} </span></p>
                 <p class="ch"><span class="ct">{{desk.position}}</span></p>
-                <p class="ch">Rented until: <span class="ct">{{desk.freeOn}}</span></p>
+                <p class="ch" :class="!desk.freeOn ? 'n' : ''"><span class="ct">{{desk.freeOn ? desk.freeOn : 'Not rented yet'}}</span></p>
+                <p class="ch" :class="!desk.freeOn ? 'n' : ''"><span class="ct">{{desk.rentedBy}}</span></p>
             </div>
             <div class="buttons">
                 <button @click="removeDesk" class="button red">Remove Desk</button>
@@ -52,6 +53,9 @@ export default {
     cursor: pointer;
 }
 
+.n {
+    font-style: italic;
+}
 .buttons {
     display: flex;
     gap: 12px;

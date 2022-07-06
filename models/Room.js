@@ -4,7 +4,6 @@ class Room {
         this._id = id;
         this.name = name;
         this.size = size;
-
         this.deskIds = deskIds ? deskIds : [];
         this.desksTaken = 0;
         this.manager = manager ? manager : 'admin';

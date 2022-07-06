@@ -7,7 +7,7 @@ export default {
 
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    title: 'NuxtRentApp',
+    title: 'Rentworks',
     htmlAttrs: {
       lang: 'en'
     },

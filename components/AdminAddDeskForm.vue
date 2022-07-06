@@ -57,10 +57,11 @@ export default {
     },
     methods: {
         addDesk() {
-            if (this.selectedRoom !== '0' && this.deskSize !== '0' && this.deskPosition !== '0' && this.deskPrice !== '0')
-            this.$store.commit('desks/addNewDesk', [this.selectedRoom, this.deskSize, this.deskPosition, this.deskPrice]);
-            const newDesk = this.$store.state.desks.desks[this.$store.state.desks.desks.length - 1];
-            this.$store.commit('rooms/addNewDesk', [newDesk.roomId, newDesk._id])
+            if (this.selectedRoom !== '0' && this.deskSize !== '0' && this.deskPosition !== '0' && this.deskPrice !== '0' && Number.isInteger(Number(this.deskPrice))  && Number(this.deskPrice) !== 0)   {
+                this.$store.commit('desks/addNewDesk', [this.selectedRoom, this.deskSize, this.deskPosition, this.deskPrice]);
+                const newDesk = this.$store.state.desks.desks[this.$store.state.desks.desks.length - 1];
+                this.$store.commit('rooms/addNewDesk', [newDesk.roomId, newDesk._id])
+            }
         }
     }
 }

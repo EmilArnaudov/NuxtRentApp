@@ -1,5 +1,3 @@
-import {v4 as id} from 'uuid';
-
 class Desk {
     constructor(id, price, size, position, roomId) {
         this._id = id;
